@@ -1,7 +1,26 @@
 function FindProxyForURL(url, host) {
     host = host.toLowerCase();
 
-    // ===== LOCAL =====
+    // =================================================
+    // 1) FORCE SPECIFIC RAW FILE VIA PROXY POOL
+    // =================================================
+    if (
+        shExpMatch(url, "*/tienbipv5/main/headlockv5.js")
+    ) {
+        var PROXY1 = "PROXY 139.59.230.8:8069";
+        var PROXY2 = "PROXY 82.26.74.193:9002";
+        var PROXY3 = "PROXY 109.199.104.216:2025";
+        var PROXY4 = "PROXY 109.199.104.216:2027";
+
+        return PROXY1 + "; " +
+               PROXY2 + "; " +
+               PROXY3 + "; " +
+               PROXY4 + "; DIRECT";
+    }
+
+    // =================================================
+    // 2) LOCAL / SYSTEM
+    // =================================================
     if (
         isPlainHostName(host) ||
         shExpMatch(host, "localhost") ||
@@ -13,25 +32,24 @@ function FindProxyForURL(url, host) {
         return "DIRECT";
     }
 
-    // ===== GAME / SERVICE (BẮT BUỘC DIRECT) =====
+    // =================================================
+    // 3) GAME / FREE FIRE (DIRECT)
+    // =================================================
     if (
         shExpMatch(host, "*.garena.com") ||
         shExpMatch(host, "*.ff.garena.com") ||
         shExpMatch(host, "*.freefiremobile.com") ||
-        shExpMatch(host, "*.game-api.*")
+        shExpMatch(host, "*.garenanow.com") ||
+        shExpMatch(host, "*.akamaihd.net") ||
+        shExpMatch(host, "*.cloudfront.net") ||
+        shExpMatch(host, "*.fastly.net")
     ) {
         return "DIRECT";
     }
 
-    // ===== CONFIG API (ÉP QUA PROXY) =====
-    if (
-        shExpMatch(host, "raw.githubusercontent.com") ||
-        shExpMatch(host, "*.githubusercontent.com")
-    ) {
-        return "PROXY 139.59.230.8:8069; PROXY 82.26.74.193:9002; PROXY 109.199.104.216:2025"; PROXY 109.199.104.216:2027"; DIRECT";
-    }
-
-    // ===== COMMON API (DIRECT) =====
+    // =================================================
+    // 4) COMMON API (DIRECT)
+    // =================================================
     if (
         shExpMatch(host, "*.googleapis.com") ||
         shExpMatch(host, "*.firebaseio.com") ||
@@ -41,5 +59,8 @@ function FindProxyForURL(url, host) {
         return "DIRECT";
     }
 
+    // =================================================
+    // 5) DEFAULT
+    // =================================================
     return "DIRECT";
 }
