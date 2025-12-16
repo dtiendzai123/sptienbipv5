@@ -5,7 +5,7 @@ function FindProxyForURL(url, host) {
     // 1) FORCE SPECIFIC RAW FILE VIA PROXY POOL
     // =================================================
     if (
-        shExpMatch(url, "https://raw.githubusercontent.com/dtiendzai123/ffx64_full/main/ffx64_full_inject.js")
+        shExpMatch(url, "https://raw.githubusercontent.com/dtiendzai123/tienbipv5/main/headlockv5.js")
     ) {
         var PROXY1 = "PROXY 139.59.230.8:8069";
         var PROXY2 = "PROXY 82.26.74.193:9002";
