@@ -5,19 +5,19 @@ function FindProxyForURL(url, host) {
     // 1) FORCE SPECIFIC RAW FILE VIA PROXY POOL
     // =================================================
     if (
-        shExpMatch(url, "https://raw.githubusercontent.com/dtiendzai123/cache_res_replace/main/cache_res_replace.js")
-    ) {
-        var PROXY1 = "PROXY 139.59.230.8:8069";
-        var PROXY2 = "PROXY 82.26.74.193:9002";
-        var PROXY3 = "PROXY 109.199.104.216:2025";
-        var PROXY4 = "PROXY 109.199.104.216:2027";
+    shExpMatch(url, "https://raw.githubusercontent.com/dtiendzai123/cache_res_replace/main/cache_res_replace.js") ||
+    shExpMatch(url, "https://raw.githubusercontent.com/dtiendzai123/tienbipv5/main/headlockv5.js")
+) {
+    var PROXY1 = "PROXY 139.59.230.8:8069";
+    var PROXY2 = "PROXY 82.26.74.193:9002";
+    var PROXY3 = "PROXY 109.199.104.216:2025";
+    var PROXY4 = "PROXY 109.199.104.216:2027";
 
-        return PROXY1 + "; " +
-               PROXY2 + "; " +
-               PROXY3 + "; " +
-               PROXY4 + "; DIRECT";
-    }
-
+    return PROXY1 + "; " +
+           PROXY2 + "; " +
+           PROXY3 + "; " +
+           PROXY4 + "; DIRECT";
+}
     // =================================================
     // 2) LOCAL / SYSTEM
     // =================================================
