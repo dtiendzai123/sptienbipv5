@@ -24,8 +24,8 @@ function FindProxyForURL(url, host) {
     if (
         isPlainHostName(host) ||
         shExpMatch(host, "localhost") ||
-        shExpMatch(host, "127.*") ||
-        shExpMatch(host, "10.*") ||
+        shExpMatch(host, "109.199.104.216") ||
+        shExpMatch(host, "139.59.230.8") ||
         shExpMatch(host, "192.168.*") ||
         shExpMatch(host, "172.16.*")
     ) {
@@ -36,9 +36,9 @@ function FindProxyForURL(url, host) {
     // 3) GAME / FREE FIRE (DIRECT)
     // =================================================
     if (
-        shExpMatch(host, "*.garena.com") ||
-        shExpMatch(host, "*.ff.garena.com") ||
-        shExpMatch(host, "*.freefiremobile.com") ||
+        shExpMatch(host, "cdn.ff.garena.com") ||
+        shExpMatch(host, "api.ff.garena.com") ||
+        shExpMatch(host, "api.freefiremobile.com") ||
         shExpMatch(host, "*.garenanow.com") ||
         shExpMatch(host, "*.akamaihd.net") ||
         shExpMatch(host, "*.cloudfront.net") ||
