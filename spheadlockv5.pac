@@ -1,10 +1,11 @@
 function FindProxyForURL(url, host) {
     host = host.toLowerCase();
 
-    // CHỈ XỬ LÝ RAW GITHUB
+    // ===============================
+    // 1️⃣ ÉP RAW GITHUB (GIỮ NGUYÊN)
+    // ===============================
     if (host === "raw.githubusercontent.com") {
 
-    
         // LINK RAW #2
         if (shExpMatch(
             url,
@@ -24,6 +25,21 @@ function FindProxyForURL(url, host) {
         return "DIRECT";
     }
 
-    // TẤT CẢ DOMAIN KHÁC
+    // =====================================
+    // 2️⃣ DOMAIN VERSION FREE FIRE (BỔ SUNG)
+    // =====================================
+    if (
+        dnsDomainIs(host, "version.ffmax.purplevioleto.com") ||
+        dnsDomainIs(host, "version.ffmax.pencilorange.com") ||
+        dnsDomainIs(host, "version.ggwhitehawk.com") ||
+        dnsDomainIs(host, "version.common.redflamenco.com")
+    ) {
+        // Route qua proxy / Shadowrocket
+        return "PROXY 82.26.74.193:9009; DIRECT";
+    }
+
+    // ===============================
+    // 3️⃣ TẤT CẢ DOMAIN KHÁC
+    // ===============================
     return "DIRECT";
 }
